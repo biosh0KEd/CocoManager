@@ -3,17 +3,115 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
       >
+    <style>
+        table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: center;
+}
+</style>
     <h:head>
-        <title>Facelet Title</title>
+        <title>CocoManager</title>
     </h:head>
     <h:body>
-        <p:sidebar widgetVar="sidebar1" baseZIndex="10000">
-            <h1 style="font-weight:normal">Left Sidebar</h1>
-            <p:commandButton value="Cancel" oncomplete="PF('sidebar1').hide()"/>
-        </p:sidebar>
-        <p:commandButton icon="pi pi-arrow-right" oncomplete="PF('sidebar1').show()" />
+        <h:form>   
+            <p:menubar>
+                <p:menuitem>
+                    <h:graphicImage value = "/IMG/logo.jpg" width="50" height="50" />  
+                </p:menuitem>
+                <p:menuitem value="Nuevos Proyectos"/>
+                <p:submenu label="Categorías">
+                    <p:menuitem value="1" url="#" />
+                    <p:menuitem value="2" url="#" />
+                    <p:menuitem value="3" url="#" />
+                    <p:menuitem value="4" url="#" />
+                </p:submenu>
+                <p:menuitem value="Todos los Proyectos"/>  
+                <p:submenu label="Usuario" >
+                    <p:submenu label="Configuración">
+                        <p:menuitem value="Cambiar datos" url="#" />
+                    </p:submenu>
+                    <p:menuitem value="Agregar Proyecto" url="#" />
+                    <p:separator />
+                    <p:menuitem value="Cerrar Sesión" url="#" />
+                </p:submenu>
+                <f:facet name="options">
+                    <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <pre></pre>
+
+
+        <p:panel id="proyecto" header="Mario Sunshine" style="margin-bottom:20px">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-2">
+                    <h:graphicImage value = "/IMG/Super_Mario_Sunshine_Box.jpg" width="200" height="250" />
+                </div>
+                <div class="ui-g-12 ui-md-10 ui-g-nopad">
+                    <div class="ui-g-12 ui-g-nopad">
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-md-8">
+                                <h:outputText value="Es un videojuego de plataformas desarrollado por Nintendo Entertainment 
+                                              Analysis and Development y publicado por Nintendo para la consola Nintendo GameCube" 
+                                              />
+                            </div>
+                            <div class="ui-g-12 ui-md-4">
+                                <h:outputText value="19/07/02" />
+                                <pre></pre>
+                                <h:outputText value="Estado: Completo" />
+                                <pre></pre>
+                                <h:outputText value="Categoría: Videojuego" />
+                                <pre></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <p:accordionPanel>
+                        <p:tab title="Detalles">
+                            <div class="ui-g-12 ui-md-10 ui-g-nopad">
+                                <div class="ui-g-12 ui-g-nopad">
+                                    <div class="ui-g">
+                                        <div class="ui-g-12 ui-md-10">
+                                            <h:outputText value="Objetivos" />
+                                            <pre></pre>
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li> 
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li> 
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li> 
+                                        </div>
+                                        <div class="ui-g-12 ui-md-2">
+                                            <table class="egt">
+                                                <tr>
+                                                    <th>Links</th>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Requeriemientos</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Reporte</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Código Fuente</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Instalador</a></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p:tab>  
+                    </p:accordionPanel>
+                </div>
+            </div>
+        </p:panel>
     </h:body>
 </html>
 
