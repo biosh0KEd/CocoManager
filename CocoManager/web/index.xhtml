@@ -7,14 +7,14 @@
       >
     <style>
         table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 5px;
-  text-align: center;
-}
-</style>
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
     <h:head>
         <title>CocoManager</title>
     </h:head>
@@ -26,15 +26,19 @@ th, td {
                 </p:menuitem>
                 <p:menuitem value="Nuevos Proyectos"/>
                 <p:submenu label="Categorías">
-                    <p:menuitem value="1" url="#" />
-                    <p:menuitem value="2" url="#" />
-                    <p:menuitem value="3" url="#" />
-                    <p:menuitem value="4" url="#" />
+                    <p:menuitem value="Página Web" url="#" />
+                    <p:menuitem value="Aplicación Movil" url="#" />
+                    <p:menuitem value="Página Web Progresiva" url="#" />
+                    <p:menuitem value="Juego" url="#" />
+                    <p:menuitem value="Aplicación de escritorio" url="#" />
+                    <p:menuitem value="Múltiples Tecnologías" url="#" />
+                    <p:menuitem value="Otros" url="#" />
                 </p:submenu>
                 <p:menuitem value="Todos los Proyectos"/>  
                 <p:submenu label="Usuario" >
                     <p:submenu label="Configuración">
-                        <p:menuitem value="Cambiar datos" url="#" />
+                        <p:menuitem value="Cambiar Nombre" url="config.xhtml" />
+                        <p:menuitem value="Cambiar Contraseña" url="config.xhtml" />
                     </p:submenu>
                     <p:menuitem value="Agregar Proyecto" url="#" />
                     <p:separator />
@@ -68,6 +72,8 @@ th, td {
                                 <pre></pre>
                                 <h:outputText value="Categoría: Videojuego" />
                                 <pre></pre>
+                                <h:outputText value="Creadores: Chit0mx, Tectoc" />
+                                <pre></pre>
                             </div>
                         </div>
                     </div>
@@ -91,7 +97,7 @@ th, td {
                                                     <th>Links</th>
                                                 </tr>
                                                 <tr>
-                                                    <td><a href="#">Requeriemientos</a></td>
+                                                    <td><a href="#">Requerimientos</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a href="#">Reporte</a></td>
