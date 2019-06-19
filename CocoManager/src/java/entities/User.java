@@ -6,9 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,12 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,10 +29,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
     , @NamedQuery(name = "User.findByIdUser", query = "SELECT u FROM User u WHERE u.idUser = :idUser")
-    , @NamedQuery(name = "User.findByLimite", query = "SELECT u FROM User u WHERE u.limite = :limite")
+    , @NamedQuery(name = "User.findByLimiteDeProyectos", query = "SELECT u FROM User u WHERE u.limiteDeProyectos = :limiteDeProyectos")
     , @NamedQuery(name = "User.findByUsuario", query = "SELECT u FROM User u WHERE u.usuario = :usuario")
     , @NamedQuery(name = "User.findByContrase\u00f1a", query = "SELECT u FROM User u WHERE u.contrase\u00f1a = :contrase\u00f1a")
-    , @NamedQuery(name = "User.findByTipoDeUsuario", query = "SELECT u FROM User u WHERE u.tipoDeUsuario = :tipoDeUsuario")})
+    , @NamedQuery(name = "User.findByTipoDeUsuario", query = "SELECT u FROM User u WHERE u.tipoDeUsuario = :tipoDeUsuario")
+    , @NamedQuery(name = "User.findByAutorizacion", query = "SELECT u FROM User u WHERE u.autorizacion = :autorizacion")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,8 +44,8 @@ public class User implements Serializable {
     private Integer idUser;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Limite")
-    private boolean limite;
+    @Column(name = "LimiteDeProyectos")
+    private boolean limiteDeProyectos;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -63,8 +60,10 @@ public class User implements Serializable {
     @NotNull
     @Column(name = "TipoDeUsuario")
     private boolean tipoDeUsuario;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
-    private Collection<Userproyecto> userproyectoCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Autorizacion")
+    private boolean autorizacion;
 
     public User() {
     }
@@ -73,12 +72,13 @@ public class User implements Serializable {
         this.idUser = idUser;
     }
 
-    public User(Integer idUser, boolean limite, String usuario, String contraseña, boolean tipoDeUsuario) {
+    public User(Integer idUser, boolean limiteDeProyectos, String usuario, String contraseña, boolean tipoDeUsuario, boolean autorizacion) {
         this.idUser = idUser;
-        this.limite = limite;
+        this.limiteDeProyectos = limiteDeProyectos;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.tipoDeUsuario = tipoDeUsuario;
+        this.autorizacion = autorizacion;
     }
 
     public Integer getIdUser() {
@@ -89,12 +89,12 @@ public class User implements Serializable {
         this.idUser = idUser;
     }
 
-    public boolean getLimite() {
-        return limite;
+    public boolean getLimiteDeProyectos() {
+        return limiteDeProyectos;
     }
 
-    public void setLimite(boolean limite) {
-        this.limite = limite;
+    public void setLimiteDeProyectos(boolean limiteDeProyectos) {
+        this.limiteDeProyectos = limiteDeProyectos;
     }
 
     public String getUsuario() {
@@ -121,13 +121,12 @@ public class User implements Serializable {
         this.tipoDeUsuario = tipoDeUsuario;
     }
 
-    @XmlTransient
-    public Collection<Userproyecto> getUserproyectoCollection() {
-        return userproyectoCollection;
+    public boolean getAutorizacion() {
+        return autorizacion;
     }
 
-    public void setUserproyectoCollection(Collection<Userproyecto> userproyectoCollection) {
-        this.userproyectoCollection = userproyectoCollection;
+    public void setAutorizacion(boolean autorizacion) {
+        this.autorizacion = autorizacion;
     }
 
     @Override

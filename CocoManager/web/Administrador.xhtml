@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Coco Manager</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="#{administrator.usuarioActual.usuario}"/>
+        <br/>
+        <h:outputText value="Usuarios"/>
+        <h:form>
+            <c:forEach var="item" items="#{administrator.obtenerTodosUsuarios()}">
+                <!--<c:if test="#{administrator.usuarioActual != item}">-->
+                    <h:outputText value="#{item.usuario}"/>
+                    <h:commandButton action="#{administrator.autorizarUsuario(item.idUser)}" value="Autorizar"/>
+                    <h:commandButton action="#{administrator.asignarLimiteAUsuario(item.idUser)}" value="Limite de Proyecto"/>
+                    <h:commandButton action="#{administrator.noAsignarLimiteAUsuario(item.idUser)}" value="Sin Limite de Proyecto"/>
+                    <h:commandButton action="#{administrator.modificarUsuario(item.idUser)}" value="Modificar"/>
+                    <br/>
+                <!--</c:if>-->
+            </c:forEach>
+        </h:form>
+        <br/>
+        <h:outputText value="Proyectos"/>
+        <h:form>
+            <c:forEach var="item" items="#{administrator.obtenerTodosProyectos()}">
+                <h:outputText value="#{item.Nombre}"/>
+                <h:commandButton action="#{administrator.autorizarUsuario(item.idUser)}" value="Autorizar"/>
+                <h:commandButton action="#{administrator.asignarLimiteAUsuario(item.idUser)}" value="Limite de Proyecto"/>
+                <br/>               
+            </c:forEach>
+        </h:form>
+    </h:body>
+</html>
+
