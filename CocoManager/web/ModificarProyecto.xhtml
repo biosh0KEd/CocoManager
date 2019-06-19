@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="#{administrator.proyectoModificar.nombre}"/>
+        <h:form>
+            <h:outputLabel value="Nombre: "/><h:inputText value="#{administrator.proyectoModificar.nombre}"/>
+            <br/>
+            <h:outputLabel value="Descripcion: "/><h:inputText value="#{administrator.proyectoModificar.descripcion}"/>
+            <br/>
+            <h:outputLabel value="Objetivos: "/><h:inputTextarea value="#{administrator.proyectoModificar.objetivos}"/>
+            <br/>
+            <h:outputLabel value="Fecha: "/><h:inputText value="#{administrator.proyectoModificar.fecha}"/>
+            <br/>
+            <h:outputLabel value="Enlace Requerimientos: "/><h:inputText value="#{administrator.proyectoModificar.enlaceReq}"/>
+            <br/>
+            <h:outputLabel value="Enlace Reporte: "/><h:inputText value="#{administrator.proyectoModificar.enlaceRepT}"/>
+            <br/>
+            <h:outputLabel value="Enlace Codigo Fuente: "/><h:inputText value="#{administrator.proyectoModificar.enlaceCF}"/>
+            <br/>
+            <h:outputLabel value="Enlace instalador: "/><h:inputText value="#{administrator.proyectoModificar.enlaceInst}"/>
+            <br/>
+            <h:outputLabel value="Estado: "/><h:inputText value="#{administrator.proyectoModificar.estado}"/>
+            <br/>
+            <h:outputLabel value="Categoria: "/><h:inputText value="#{administrator.proyectoModificar.idCategoria}"/>
+            <br/>
+            <h:commandButton action="#{administrator.ModificarUsuario()}" value="Pos Categoria"/> 
+        </h:form>
+    </h:body>
+</html>
+

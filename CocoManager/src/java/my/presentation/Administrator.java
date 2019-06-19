@@ -30,18 +30,15 @@ public class Administrator {
     private UserFacade userFacade;
     private User usuarioActual;
     private User usuarioModificar;
-    private User usuario;
+    private Proyecto proyectoModificar;
     
     /**
      * Creates a new instance of Administrator
      */
     public Administrator() {
         this.usuarioActual = new User();
-        this.usuario = new User();
-    }
-    
-    public User getUsuario() {
-        return usuario;
+        this.usuarioModificar = new User();
+        this.proyectoModificar = new Proyecto();
     }
     
     public User getUsuarioActual() {
@@ -50,6 +47,10 @@ public class Administrator {
     
     public User getUsuarioModificar() {
         return usuarioModificar;
+    }
+    
+    public Proyecto getProyectoModificar(){
+        return proyectoModificar;
     }
     
     public List<User> obtenerTodosUsuarios(){
@@ -66,7 +67,7 @@ public class Administrator {
             if (usr.getUsuario().equals(this.usuarioActual.getUsuario())) {
                 this.usuarioActual = usr;
                 if (usr.getTipoDeUsuario()){
-                    return "Administrador?faces-redirect=true&includeViewParams=true";
+                    return "Administrador";
                 }
                 return "theend";
             } 
@@ -75,14 +76,21 @@ public class Administrator {
     }
     
     public String modificarUsuario(int id){
-        this.usuarioModificar = new User();
         this.usuarioModificar = userFacade.find(id);
         return "ModificaUsuario";
     }
     
     public String ModificarUsuario(){
-        this.userFacade.edit(this.usuarioModificar);
-        return "Administrador";
+        List<User> Usuarios = userFacade.findAll();
+        for(User usr : Usuarios){
+            if (usr.getUsuario().equals(this.usuarioModificar.getUsuario())) {
+                usr.setUsuario(this.usuarioModificar.getUsuario());
+                usr.setContraseña(this.usuarioModificar.getContraseña());
+                this.userFacade.edit(usr);
+                return "Administrador";
+            } 
+        }
+        return "Failure";
     }
     
     public void autorizarUsuario(int id){
@@ -124,21 +132,6 @@ public class Administrator {
         //}
     }
     
-    public void modificarUsernameUsuario(int id, String username){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            User UsuarioAEditar = this.userFacade.find(id);
-            UsuarioAEditar.setUsuario(username);
-            this.userFacade.edit(UsuarioAEditar);
-        //}
-    }
-    
-    public void modificarContraseñaUsuario(int id, String psw){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            User UsuarioAEditar = this.userFacade.find(id);
-            UsuarioAEditar.setContraseña(psw);
-            this.userFacade.edit(UsuarioAEditar);
-        //}
-    } 
    
     public void eliminarProyecto(int idProyecto){
         //if(this.usuarioActual.getTipoDeUsuario()){
@@ -147,80 +140,29 @@ public class Administrator {
         //}
     }
     
-    public void modificarProyectoNombre(int idProyecto, String nombre){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setNombre(nombre);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
+    public String modificarProyecto(int id){
+        this.proyectoModificar = proyectoFacade.find(id);
+        return "ModificarProyecto";
     }
     
-    public void modificarProyectoDescripcion(int idProyecto, String descripcion){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setDescripcion(descripcion);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
-    }
-    
-    
-    public void modificarProyectoObjetivos(int idProyecto, String objetivos){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setObjetivos(objetivos);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
-    }
-    
-    public void modificarProyectoFecha(int idProyecto, Date fecha){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setFecha(fecha);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
-    }
-    
-    public void modificarProyectoCategoria(int idProyecto, Categoria idCategoria){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setIdCategoria(idCategoria);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
-    }
-    
-    
-    public void modificarProyectoRequerimientos(int idProyecto, String Req){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setEnlaceReq(Req);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
-    }
-    
-    
-    public void modificarProyectoReporte(int idProyecto, String Reporte){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setEnlaceRepT(Reporte);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
-    }
-    
-    
-    public void modificarProyectoCodigoFuente(int idProyecto, String CF){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setEnlaceCF(CF);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
-    }
-    
-    
-    public void modificarProyectoInstalador(int idProyecto, String Ins){
-        //if(this.usuarioActual.getTipoDeUsuario()){
-            Proyecto proyectoAModificar = this.proyectoFacade.find(idProyecto);
-            proyectoAModificar.setEnlaceInst(Ins);
-            this.proyectoFacade.edit(proyectoAModificar);
-        //}
+    public String ModificarProyecto(){
+        List<Proyecto> Proyectos = proyectoFacade.findAll();
+        for(Proyecto pyt : Proyectos){
+            if (pyt.getNombre().equals(this.proyectoModificar.getNombre())) {
+                pyt.setNombre(this.proyectoModificar.getNombre());
+                pyt.setDescripcion(this.proyectoModificar.getDescripcion());
+                pyt.setEnlaceCF(this.proyectoModificar.getEnlaceCF());
+                pyt.setEnlaceInst(this.proyectoModificar.getEnlaceInst());
+                pyt.setEnlaceRepT(this.proyectoModificar.getEnlaceRepT());
+                pyt.setEnlaceReq(this.proyectoModificar.getEnlaceReq());
+                pyt.setEstado(this.proyectoModificar.getEstado());
+                pyt.setFecha(this.proyectoModificar.getFecha());
+                pyt.setIdCategoria(this.proyectoModificar.getIdCategoria());
+                pyt.setObjetivos(this.proyectoModificar.getObjetivos());
+                this.proyectoFacade.edit(pyt);
+                return "Administrador";
+            } 
+        }
+        return "Failure";
     }
 }
