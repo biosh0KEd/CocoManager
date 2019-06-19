@@ -13,7 +13,8 @@
         <h:outputText value="Usuarios"/>
         <h:form>
             <c:forEach var="userx" items="#{administrator.obtenerTodosUsuarios()}">
-                <!--<c:if test="#{administrator.usuarioActual != item}">-->
+                <c:set var="cont"/>
+                <c:if test="#{userx.idUser != 10}">
                     <h:outputText value="#{userx.usuario}"/>
                     <h:commandButton action="#{administrator.autorizarUsuario(userx.idUser)}" value="Autorizar"/>
                     <h:commandButton action="#{administrator.asignarLimiteAUsuario(userx.idUser)}" value="Limite de Proyecto"/>
@@ -22,7 +23,7 @@
                     <h:commandButton action="#{administrator.crearAdmins(userx.idUser)}" value="Hacer Admin"/>
                     <h:commandButton action="#{administrator.eliminarUsuario(userx.idUser)}" value="Eliminar"/>
                     <br/>
-                <!--</c:if>-->
+                </c:if>
             </c:forEach>
         </h:form>
         <br/>
