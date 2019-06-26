@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Coco Manager</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="#{administrator.usuarioActual.usuario}"/>
+        <br/>
+        <h:outputText value="Usuarios"/>
+        <h:form>
+            <c:forEach var="userx" items="#{administrator.obtenerTodosUsuarios()}">
+                <c:set var="cont"/>
+                <c:if test="#{userx.idUser != 10}">
+                    <h:outputText value="#{userx.usuario}"/>
+                    <h:commandButton action="#{administrator.autorizarUsuario(userx.idUser)}" value="Autorizar"/>
+                    <h:commandButton action="#{administrator.asignarLimiteAUsuario(userx.idUser)}" value="Limite de Proyecto"/>
+                    <h:commandButton action="#{administrator.noAsignarLimiteAUsuario(userx.idUser)}" value="Sin Limite de Proyecto"/>
+                    <h:commandButton action="#{administrator.modificarUsuario(userx.idUser)}" value="Modificar"/>
+                    <h:commandButton action="#{administrator.crearAdmins(userx.idUser)}" value="Hacer Admin"/>
+                    <h:commandButton action="#{administrator.eliminarUsuario(userx.idUser)}" value="Eliminar"/>
+                    <br/>
+                </c:if>
+            </c:forEach>
+        </h:form>
+        <br/>
+        <h:outputText value="Proyectos"/>
+        <h:form>
+            <c:forEach var="proyect" items="#{administrator.obtenerTodosProyectos()}">
+                <h:outputText value="#{proyect.nombre}"/>
+                <h:commandButton action="#{administrator.modificarProyecto(proyect.idProyecto)}" value="Modificar"/>
+                <h:commandButton action="#{administrator.eliminarProyecto(proyect.idProyecto)}" value="Eliminar"/>
+                <br/>               
+            </c:forEach>
+        </h:form>
+    </h:body>
+</html>
+
